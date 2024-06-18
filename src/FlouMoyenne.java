@@ -41,6 +41,6 @@ public class FlouMoyenne implements PretraitementImage {
             }
         }
 
-        ImageIO.write(newImg, "png", new File(path));
+        ImageIO.write(newImg, "png", new File(path.replace(".png", "-flouMoyenne.png")));
     }
 }
