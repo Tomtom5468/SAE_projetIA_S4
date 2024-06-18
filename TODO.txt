@@ -1,0 +1,6 @@
+Flou par moyenne
+Flou gaussien
+
+Détection groupe de pixels
+Etiquetage des biomes
+Affichage des biomes
