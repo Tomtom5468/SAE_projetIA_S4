@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public class Main {
+public class MainKerrian {
 
     public static void main(String[] args) {
         FlouMoyenne flouMoyenne = new FlouMoyenne();
