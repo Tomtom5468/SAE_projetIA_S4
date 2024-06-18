@@ -41,6 +41,14 @@ public class FlouMoyenne implements PretraitementImage {
             }
         }
 
-        ImageIO.write(newImg, "png", new File(path.replace(".png", "-flouMoyenne.png")));
+        if(path.endsWith(".jpg")){
+            ImageIO.write(newImg, "jpg", new File(path.replace(".jpg", "-flouMoyenne.jpg")));
+        }else if(path.endsWith(".png")){
+            ImageIO.write(newImg, "png", new File(path.replace(".png", "-flouMoyenne.png")));
+        }else if(path.endsWith(".jpeg")) {
+            ImageIO.write(newImg, "jpeg", new File(path.replace(".jpeg", "-flouMoyenne.jpeg")));
+        }else {
+            System.out.println("Format d'image non supporté");
+        }
     }
 }

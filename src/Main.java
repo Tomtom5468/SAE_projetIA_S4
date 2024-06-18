@@ -6,7 +6,11 @@ public class Main {
         FlouMoyenne flouMoyenne = new FlouMoyenne();
 
         try {
-            flouMoyenne.appliquerFiltreConvolution("images/img.png");
+            flouMoyenne.appliquerFiltreConvolution("images/Planete 1.jpg");
+            flouMoyenne.appliquerFiltreConvolution("images/Planete 2.jpg");
+            flouMoyenne.appliquerFiltreConvolution("images/Planete 3.jpg");
+            flouMoyenne.appliquerFiltreConvolution("images/Planete 4.jpg");
+            flouMoyenne.appliquerFiltreConvolution("images/Planete 5.jpeg");
         } catch (IOException e) {
             e.printStackTrace();
         }
