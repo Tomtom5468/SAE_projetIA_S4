@@ -11,8 +11,13 @@ public class MainKerrian {
             flouMoyenne.appliquerFiltreConvolution("images/Planete 3.jpg");
             flouMoyenne.appliquerFiltreConvolution("images/Planete 4.jpg");
             flouMoyenne.appliquerFiltreConvolution("images/Planete 5.jpeg");
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static void main(String[] args) {
+
     }
 }
