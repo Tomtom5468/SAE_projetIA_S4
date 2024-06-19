@@ -1,4 +1,10 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Random;
 public class KMeans implements AlgoClustering{
 
@@ -69,5 +75,36 @@ public class KMeans implements AlgoClustering{
             }
         }
         return i;
+    }
+
+    public void convertirImage(String path) throws IOException {
+        File file = new File(path);
+        BufferedImage image = ImageIO.read(file);
+        double[][] descriptions = new double[image.getWidth() * image.getHeight()][3];
+        int index = 0;
+        for (int i = 0; i < image.getWidth(); i++) {
+            for (int j = 0; j < image.getHeight(); j++) {
+                Color color = new Color(image.getRGB(i, j));
+                descriptions[i * image.getHeight() + j][0] = color.getRed();
+                descriptions[i * image.getHeight() + j][1] = color.getGreen();
+                descriptions[i * image.getHeight() + j][2] = color.getBlue();
+                index++;
+            }
+        }
+
+        int[] clusters = cluster(descriptions);
+
+        BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+        for (int i = 0; i < image.getWidth(); i++) {
+            for (int j = 0; j < image.getHeight(); j++) {
+                int cluster = clusters[i * image.getHeight() + j];
+                Color color = new Color((int) descriptions[cluster][0], (int) descriptions[cluster][1], (int) descriptions[cluster][2]);
+                newImage.setRGB(i, j, color.getRGB());
+            }
+        }
+        Path path1 = Paths.get(path);
+        String fileName = path1.getFileName().toString();
+        String newPath = path1.getParent().toString() + "/output-" + fileName;
+        ImageIO.write(newImage, "png", new File(newPath));
     }
 }
