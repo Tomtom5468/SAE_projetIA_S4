@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ImageEcosystemes {
 
@@ -35,6 +33,7 @@ public class ImageEcosystemes {
         index = 0;
         for (int i = 0; i < img.getWidth(); i++) {
             for (int j = 0; j < img.getHeight(); j++) {
+                System.out.println(clusters[index] + " / " + palette.biome.size());
                 Biome biome = palette.biome.get(clusters[index]);
                 newImg.setRGB(i, j, biome.couleur.getRGB());
                 index++;

@@ -19,7 +19,7 @@ public class MainKerrian {
             **/
             DBSCAN dbscan = new DBSCAN(0.01, 1);
             ImageEcosystemes imageEcosystemes = new ImageEcosystemes(dbscan, Palette.DEFAULT);
-            imageEcosystemes.afficherEcosystemes("images/Planete 1.jpg");
+            imageEcosystemes.afficherEcosystemes("images/Gaussien-new-city_logo.jpeg");
 
 
         } catch (IOException e) {
