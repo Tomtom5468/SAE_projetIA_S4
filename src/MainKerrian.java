@@ -17,7 +17,7 @@ public class MainKerrian {
             ImageBiomes imageBiomes = new ImageBiomes(kMeans, Palette.DEFAULT);
             imageBiomes.afficherBiomes("images/Planete 1.jpg");
             **/
-            DBSCAN dbscan = new DBSCAN(5, 10);
+            DBSCAN dbscan = new DBSCAN(0.01, 1);
             ImageEcosystemes imageEcosystemes = new ImageEcosystemes(dbscan, Palette.DEFAULT);
             imageEcosystemes.afficherEcosystemes("images/Planete 1.jpg");
 
