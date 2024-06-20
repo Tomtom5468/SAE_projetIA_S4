@@ -76,17 +76,19 @@ public class ImageBiomes {
 
         // Création des images pour chaque biome
         for (int b = 0; b < biomes.size(); b++) {
-            BufferedImage biomeImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
-            for(int i = 0; i < img.getWidth(); i++){
-                for(int j = 0; j < img.getHeight(); j++){
-                    biomeImg.setRGB(i, j, img.getRGB(i, j));
-                }
-            }
+            BufferedImage biomeImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
             index = 0;
             for (int i = 0; i < img.getWidth(); i++) {
                 for (int j = 0; j < img.getHeight(); j++) {
                     if (clusters[index] == b) {
                         biomeImg.setRGB(i, j, biomes.get(b).getRGB());
+                    } else {
+                        Color color = new Color(img.getRGB(i, j));
+                        int[] rgbtab = OutilCouleur.getTabColor(color.getRGB());
+                        rgbtab[0] = Math.round(rgbtab[0] + (float) 75 /100 * (255-rgbtab[0]));
+                        rgbtab[1] = Math.round(rgbtab[1] + (float) 75 /100 * (255-rgbtab[1]));
+                        rgbtab[2] = Math.round(rgbtab[2] + (float) 75 /100 * (255-rgbtab[2]));
+                        biomeImg.setRGB(i, j, new Color(rgbtab[0], rgbtab[1], rgbtab[2]).getRGB());
                     }
                     index++;
                 }
