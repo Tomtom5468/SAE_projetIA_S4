@@ -93,12 +93,13 @@ public class ImageBiomes {
                     index++;
                 }
             }
+            String biomeName = Biome.getBiomeName(biomes.get(b));
             if(path.endsWith(".jpg")){
-                ImageIO.write(biomeImg, "jpg", new File(path.replace(".jpg", "-Biome" + b + ".jpg")));
+                ImageIO.write(biomeImg, "jpg", new File(path.replace(".jpg", "-Biome" + biomeName + ".jpg")));
             }else if(path.endsWith(".png")){
-                ImageIO.write(biomeImg, "png", new File(path.replace(".png", "-Biome" + b + ".png")));
+                ImageIO.write(biomeImg, "png", new File(path.replace(".png", "-Biome" + biomeName + ".png")));
             }else if(path.endsWith(".jpeg")) {
-                ImageIO.write(biomeImg, "jpeg", new File(path.replace(".jpeg", "-Biome" + b + ".jpeg")));
+                ImageIO.write(biomeImg, "jpeg", new File(path.replace(".jpeg", "-Biome" + biomeName + ".jpeg")));
             }else {
                 System.out.println("Format d'image non supporté");
             }

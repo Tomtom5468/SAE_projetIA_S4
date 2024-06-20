@@ -18,4 +18,18 @@ public class Biome {
     static final Biome GLACIER = new Biome(new Color(200,200,200), "Glacier");
     static final Biome EAU_PEU_PROFONDE = new Biome(new Color(49,83,100), "Eau peu profonde");
     static final Biome EAU_PROFONDE = new Biome(new Color(12,31,47), "Eau profonde");
+
+    public static String getBiomeName(Color color) {
+        if (color.equals(Biome.TUNDRA.couleur)) return "Tundra";
+        if (color.equals(Biome.TAIGA.couleur)) return "Taiga";
+        if (color.equals(Biome.FORET_TEMPEREE.couleur)) return "Forêt tempérée";
+        if (color.equals(Biome.FORET_TROPICALE.couleur)) return "Forêt tropicale";
+        if (color.equals(Biome.SAVANE.couleur)) return "Savane";
+        if (color.equals(Biome.PRAIRIE.couleur)) return "Prairie";
+        if (color.equals(Biome.DESERT.couleur)) return "Désert";
+        if (color.equals(Biome.GLACIER.couleur)) return "Glacier";
+        if (color.equals(Biome.EAU_PEU_PROFONDE.couleur)) return "Eau peu profonde";
+        if (color.equals(Biome.EAU_PROFONDE.couleur)) return "Eau profonde";
+        return "Unknown";
+    }
 }
