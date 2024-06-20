@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Palette {
     List<Biome> biome;
+    NormeCouleurs distanceCouleur;
     final static Palette DEFAULT = new Palette(List.of(
             Biome.TUNDRA,
             Biome.TAIGA,
@@ -19,5 +20,19 @@ public class Palette {
 
     public Palette(List<Biome> biomes) {
         this.biome = biomes;
+        this.distanceCouleur = new NormeCIELAB();
+    }
+
+    public Color getPlusProche(Color c){
+        double distance = Double.MAX_VALUE;
+        Color plusProche = null;
+        for (int i = 0; i < biome.size(); i++) {
+            double d = distanceCouleur.distanceCouleur(c, biome.get(i).couleur);
+            if (d < distance){
+                distance = d;
+                plusProche = biome.get(i).couleur;
+            }
+        }
+        return plusProche;
     }
 }

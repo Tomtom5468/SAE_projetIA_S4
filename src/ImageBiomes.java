@@ -3,7 +3,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.List;
 
 public class ImageBiomes {
@@ -31,12 +32,34 @@ public class ImageBiomes {
         }
 
         int[] clusters = kMeans.cluster(descriptions);
+
+        //on récupère les clusters dans un set avec leur index
+        HashMap<Integer, Integer> clustersMap = new HashMap<>();
+        for (int i = 0; i < clusters.length; i++) {
+            clustersMap.put(clusters[i], i);
+        }
+
+        //on crée un set de biomes et on l'initialise a vide
+        List<Color> biomes = new ArrayList<>(clustersMap.size());
+        for (int i = 0; i < clustersMap.size(); i++) {
+            biomes.add(new Color(0, 0, 0));
+        }
+
+        //on récupère les couleurs des clusters
+        for (int i = 0; i < clustersMap.size(); i++) {
+            int[] rgbtab;
+            int rgb = img.getRGB(clustersMap.get(i)/img.getWidth(), clustersMap.get(i)%img.getWidth());
+            rgbtab = OutilCouleur.getTabColor(rgb);
+            biomes.set(i,palette.getPlusProche(new Color(rgbtab[0], rgbtab[1], rgbtab[2])));
+        }
+
+
         BufferedImage newImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
         index = 0;
         for (int i = 0; i < img.getWidth(); i++) {
             for (int j = 0; j < img.getHeight(); j++) {
-                Biome biome = palette.biome.get(clusters[index]);
-                newImg.setRGB(i, j, biome.couleur.getRGB());
+                Color biome = biomes.get(clusters[index]);
+                newImg.setRGB(i, j, biome.getRGB());
                 index++;
             }
         }
