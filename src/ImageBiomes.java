@@ -72,5 +72,37 @@ public class ImageBiomes {
             ImageIO.write(newImg, "jpeg", new File(path.replace(".jpeg", "-KMeans.jpeg")));
         }else {
             System.out.println("Format d'image non supporté");
-        }    }
+        }
+
+        // Création des images pour chaque biome
+        for (int b = 0; b < biomes.size(); b++) {
+            BufferedImage biomeImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            for(int i = 0; i < img.getWidth(); i++){
+                for(int j = 0; j < img.getHeight(); j++){
+                    biomeImg.setRGB(i, j, img.getRGB(i, j));
+                }
+            }
+            index = 0;
+            for (int i = 0; i < img.getWidth(); i++) {
+                for (int j = 0; j < img.getHeight(); j++) {
+                    if (clusters[index] == b) {
+                        biomeImg.setRGB(i, j, biomes.get(b).getRGB());
+                    }
+                    index++;
+                }
+            }
+            if(path.endsWith(".jpg")){
+                ImageIO.write(biomeImg, "jpg", new File(path.replace(".jpg", "-Biome" + b + ".jpg")));
+            }else if(path.endsWith(".png")){
+                ImageIO.write(biomeImg, "png", new File(path.replace(".png", "-Biome" + b + ".png")));
+            }else if(path.endsWith(".jpeg")) {
+                ImageIO.write(biomeImg, "jpeg", new File(path.replace(".jpeg", "-Biome" + b + ".jpeg")));
+            }else {
+                System.out.println("Format d'image non supporté");
+            }
+        }
+
+    }
+
+
 }

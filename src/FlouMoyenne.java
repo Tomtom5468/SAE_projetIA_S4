@@ -27,20 +27,24 @@ public class FlouMoyenne implements PretraitementImage {
                         // Vérifie si le pixel est dans les limites de l'image
                         if (i + k >= 0 && i + k < img.getWidth() && j + l >= 0 && j + l < img.getHeight()) {
                             int[] rgb2 = OutilCouleur.getTabColor(img.getRGB(i + k, j + l));
+                            // Application du filtre
                             rgb[0] += rgb2[0] * FILTRE[k + 1][l + 1] / 9;
                             rgb[1] += rgb2[1] * FILTRE[k + 1][l + 1] / 9;
                             rgb[2] += rgb2[2] * FILTRE[k + 1][l + 1] / 9;
                         }
                     }
                 }
+                // Vérification des limites de la couleur
                 rgb[0] = Math.min(255, Math.max(0, rgb[0]));
                 rgb[1] = Math.min(255, Math.max(0, rgb[1]));
                 rgb[2] = Math.min(255, Math.max(0, rgb[2]));
                 int nRGB = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+                // Application de la couleur
                 newImg.setRGB(i, j, nRGB);
             }
         }
 
+        // Sauvegarde de l'image
         if(path.endsWith(".jpg")){
             ImageIO.write(newImg, "jpg", new File(path.replace(".jpg", "-flouMoyenne.jpg")));
         }else if(path.endsWith(".png")){
